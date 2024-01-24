@@ -16,6 +16,10 @@
         android:theme="@style/Theme.FormulaOneDrivers"
         tools:targetApi="31">
         <activity
+            android:name=".DriverDetail"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

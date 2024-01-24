@@ -48,4 +48,32 @@ public class Drivers {
                 ", teamName='" + teamName + '\'' +
                 '}';
     }
+
+    public int getDriverNumber() {
+        return driverNumber;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getNameAcronym() {
+        return nameAcronym;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public int getSessionKey() {
+        return sessionKey;
+    }
+
+    public String getHeadshotUrl() {
+        return headshotUrl;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
 }

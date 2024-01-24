@@ -1,11 +1,11 @@
 package com.hafidikhsana.formulaonedrivers;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
 
         ListView listView = findViewById(R.id.listview);
         LinearLayout errorView = findViewById(R.id.error_display);
@@ -38,10 +41,22 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Drivers>> call, Response<List<Drivers>> response) {
                 if (response.isSuccessful()) {
                     List<Drivers> drivers = response.body();
-                    ArrayAdapter<Drivers> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, drivers);
+                    DriverListAdapter adapter = new DriverListAdapter(MainActivity.this, drivers);
                     listView.setAdapter(adapter);
                     loadingView.setVisibility(View.GONE);
                     listView.setVisibility(View.VISIBLE);
+
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            Intent intent = new Intent(MainActivity.this,DriverDetail.class);
+                            Drivers driver = adapter.getItem(i);
+                            intent.putExtra("name", driver.getFullName());
+                            intent.putExtra("number", Integer.toString(driver.getDriverNumber()));
+                            intent.putExtra("session", Integer.toString(driver.getSessionKey()));
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
 
