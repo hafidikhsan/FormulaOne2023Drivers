@@ -1,10 +1,20 @@
 package com.hafidikhsana.formulaonedrivers;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,23 +23,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView driversList = findViewById(R.id.list_view_drivers);
+        ListView listView = findViewById(R.id.listview);
+        LinearLayout errorView = findViewById(R.id.error_display);
+        LinearLayout loadingView = findViewById(R.id.progress_circle);
+        TextView errorMessage = findViewById(R.id.error_message);
 
-        Drivers[] drivers = {
-                new Drivers(1, "Max Verstapen", "MAX", "Red Bull Racing"),
-                new Drivers(11, "Sergio Perez", "PER", "Red Bull Racing"),
-                new Drivers(3, "Daniel Ricciardi", "RIC", "Scuderria Alphatauri"),
-                new Drivers(22, "Yuki Tsunoda", "Tsu", "Scuderria Alphatauri"),
-                new Drivers(16, "Charles Leclere", "LEC", "Scuderria Ferrari"),
-                new Drivers(55, "Carlos Sainz", "SAI", "Scuderria Ferrari"),
-                new Drivers(2, "Logan Sargent", "SAR", "Williams"),
-                new Drivers(23, "Alex Albon", "ALB", "Williams"),
-                new Drivers(4, "Lando Norris", "NOR", "McLaren"),
-                new Drivers(81, "Oscar Piastri", "PIA", "McLaren"),
-        };
+        APIClient apiClient = APIClient.getInstance();
+        OpenF1API openF1Api = apiClient.getOpenF1Api();
 
-        ArrayAdapter<Drivers> driversAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, drivers);
+        Call<List<Drivers>> call = openF1Api.getDrivers();
 
-        driversList.setAdapter(driversAdapter);
+        call.enqueue(new Callback<List<Drivers>>() {
+            @Override
+            public void onResponse(Call<List<Drivers>> call, Response<List<Drivers>> response) {
+                if (response.isSuccessful()) {
+                    List<Drivers> drivers = response.body();
+                    ArrayAdapter<Drivers> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, drivers);
+                    listView.setAdapter(adapter);
+                    loadingView.setVisibility(View.GONE);
+                    listView.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Drivers>> call, Throwable t) {
+                loadingView.setVisibility(View.GONE);
+                errorMessage.setText(t.getMessage());
+                errorView.setVisibility(View.VISIBLE);
+            }
+        });
     }
 }

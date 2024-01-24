@@ -1,31 +1,51 @@
 package com.hafidikhsana.formulaonedrivers;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Drivers {
 
-    int driverNumber;
-    String broadcastName;
-    String fullName;
-    String nameAcronym;
-    String teamName;
-    String teamColour;
-    String firstName;
-    String lastName;
-    String headshotUrl;
-    String countryCode;
-    int sessionKey;
-    int meetingKey;
+    @SerializedName("driver_number")
+    private int driverNumber;
 
-    Drivers(int driverNumber, String fullName, String nameAcronym, String teamName) {
-        this.driverNumber = driverNumber;
-        this.fullName = fullName;
-        this.nameAcronym = nameAcronym;
-        this.teamName = teamName;
-    }
+    @SerializedName("broadcast_name")
+    private String broadcastName;
+
+    @SerializedName("full_name")
+    private String fullName;
+
+    @SerializedName("name_acronym")
+    private String nameAcronym;
+
+    @SerializedName("team_name")
+    private String teamName;
+
+    @SerializedName("team_colour")
+    private String teamColour;
+
+    @SerializedName("first_name")
+    private String firstName;
+
+    @SerializedName("last_name")
+    private String lastName;
+
+    @SerializedName("headshot_url")
+    private String headshotUrl;
+
+    @SerializedName("country_code")
+    private String countryCode;
+
+    @SerializedName("session_key")
+    private int sessionKey;
+
+    @SerializedName("meeting_key")
+    private int meetingKey;
 
     @Override
     public String toString() {
         return "Drivers{" +
-                "fullName='" + fullName + '\'' +
+                "driverNumber=" + driverNumber +
+                ", fullName='" + fullName + '\'' +
+                ", teamName='" + teamName + '\'' +
                 '}';
     }
 }
