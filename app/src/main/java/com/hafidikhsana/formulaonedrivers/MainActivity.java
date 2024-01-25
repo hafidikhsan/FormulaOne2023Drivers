@@ -1,13 +1,11 @@
 package com.hafidikhsana.formulaonedrivers;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -26,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        ListView listView = findViewById(R.id.listview);
+        RecyclerView list = findViewById(R.id.listview);
         LinearLayout errorView = findViewById(R.id.error_display);
         LinearLayout loadingView = findViewById(R.id.progress_circle);
         TextView errorMessage = findViewById(R.id.error_message);
@@ -41,22 +39,22 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Drivers>> call, Response<List<Drivers>> response) {
                 if (response.isSuccessful()) {
                     List<Drivers> drivers = response.body();
-                    DriverListAdapter adapter = new DriverListAdapter(MainActivity.this, drivers);
-                    listView.setAdapter(adapter);
+                    DriversAdapter adapter = new DriversAdapter(drivers);
+                    list.setAdapter(adapter);
                     loadingView.setVisibility(View.GONE);
-                    listView.setVisibility(View.VISIBLE);
+                    list.setVisibility(View.VISIBLE);
 
-                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                            Intent intent = new Intent(MainActivity.this,DriverDetail.class);
-                            Drivers driver = adapter.getItem(i);
-                            intent.putExtra("name", driver.getFullName());
-                            intent.putExtra("number", Integer.toString(driver.getDriverNumber()));
-                            intent.putExtra("session", Integer.toString(driver.getSessionKey()));
-                            startActivity(intent);
-                        }
-                    });
+//                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                        @Override
+//                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                            Intent intent = new Intent(MainActivity.this,DriverDetail.class);
+//                            Drivers driver = adapter.getItem(i);
+//                            intent.putExtra("name", driver.getFullName());
+//                            intent.putExtra("number", Integer.toString(driver.getDriverNumber()));
+//                            intent.putExtra("session", Integer.toString(driver.getSessionKey()));
+//                            startActivity(intent);
+//                        }
+//                    });
                 }
             }
 
