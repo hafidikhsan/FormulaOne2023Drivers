@@ -13,7 +13,7 @@ import java.util.List;
 public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriverViewHolder> {
 
     private List<Drivers> drivers;
-    private OnClickListener onClickListener;
+    private static OnClickListener onClickListener;
 
     public DriversAdapter(List<Drivers> drivers) {
         this.drivers = drivers;
@@ -28,15 +28,7 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriverVi
 
     @Override
     public void onBindViewHolder(@NonNull DriverViewHolder holder, int position) {
-        holder.bind(drivers.get(position));
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (onClickListener != null) {
-                    onClickListener.onClick(position, drivers.get(position));
-                }
-            }
-        });
+        holder.bind(holder, drivers.get(position), position);
     }
 
     @Override
@@ -45,7 +37,7 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriverVi
     }
 
     public void setOnClickListener(OnClickListener onClickListener) {
-        this.onClickListener = onClickListener;
+        DriversAdapter.onClickListener = onClickListener;
     }
 
     public interface OnClickListener {
@@ -67,13 +59,21 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriverVi
             driverTeam = itemView.findViewById(R.id.driver_team);
         }
 
-        public void bind(Drivers drivers) {
+        public void bind(@NonNull DriverViewHolder holder, Drivers drivers, int position) {
             driverName.setText(drivers.getFullName());
             String number = Integer.toString(drivers.getDriverNumber());
             driverNumber.setText(number);
             driverTeam.setText(drivers.getTeamName());
             String acronym = "(" + drivers.getNameAcronym() + ")";
             driverAcronym.setText(acronym);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (onClickListener != null) {
+                        onClickListener.onClick(position, drivers);
+                    }
+                }
+            });
         }
     }
 }
