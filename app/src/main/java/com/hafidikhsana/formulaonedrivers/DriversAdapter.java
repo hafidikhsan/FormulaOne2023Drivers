@@ -13,6 +13,7 @@ import java.util.List;
 public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriverViewHolder> {
 
     private List<Drivers> drivers;
+    private OnClickListener onClickListener;
 
     public DriversAdapter(List<Drivers> drivers) {
         this.drivers = drivers;
@@ -28,11 +29,27 @@ public class DriversAdapter extends RecyclerView.Adapter<DriversAdapter.DriverVi
     @Override
     public void onBindViewHolder(@NonNull DriverViewHolder holder, int position) {
         holder.bind(drivers.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onClickListener != null) {
+                    onClickListener.onClick(position, drivers.get(position));
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return drivers.size();
+    }
+
+    public void setOnClickListener(OnClickListener onClickListener) {
+        this.onClickListener = onClickListener;
+    }
+
+    public interface OnClickListener {
+        void onClick(int position, Drivers model);
     }
 
     static class DriverViewHolder extends RecyclerView.ViewHolder {

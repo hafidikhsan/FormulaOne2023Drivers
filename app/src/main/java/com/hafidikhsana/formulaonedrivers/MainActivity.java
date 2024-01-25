@@ -76,18 +76,16 @@ public class MainActivity extends AppCompatActivity {
                     logout.setVisibility(View.VISIBLE);
                     loaded.setVisibility(View.VISIBLE);
 
-
-//                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                        @Override
-//                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                            Intent intent = new Intent(MainActivity.this,DriverDetail.class);
-//                            Drivers driver = adapter.getItem(i);
-//                            intent.putExtra("name", driver.getFullName());
-//                            intent.putExtra("number", Integer.toString(driver.getDriverNumber()));
-//                            intent.putExtra("session", Integer.toString(driver.getSessionKey()));
-//                            startActivity(intent);
-//                        }
-//                    });
+                    adapter.setOnClickListener(new DriversAdapter.OnClickListener() {
+                        @Override
+                        public void onClick(int position, Drivers model) {
+                            Intent intent = new Intent(MainActivity.this,DriverDetail.class);
+                            intent.putExtra("name", model.getFullName());
+                            intent.putExtra("number", Integer.toString(model.getDriverNumber()));
+                            intent.putExtra("session", Integer.toString(model.getSessionKey()));
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
 
