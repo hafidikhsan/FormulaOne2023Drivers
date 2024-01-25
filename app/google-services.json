@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "872519150527",
+    "project_id": "formula-one-2023-drivers",
+    "storage_bucket": "formula-one-2023-drivers.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:872519150527:android:fcc68ad694b4105f8e0f0a",
+        "android_client_info": {
+          "package_name": "com.hafidikhsana.formulaonedrivers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "872519150527-ndu97etvjh1sg3o8hcea57cspm18i9b5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hafidikhsana.formulaonedrivers",
+            "certificate_hash": "92f4c144b3a5e0062c35c4a85d509fe1636dcac7"
+          }
+        },
+        {
+          "client_id": "872519150527-08qrm5flf9u8tnjh3ul8jkuabthecb1a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwcwGFz4aXJAdkeOXyr428jSOUAsfSm9I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "872519150527-08qrm5flf9u8tnjh3ul8jkuabthecb1a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

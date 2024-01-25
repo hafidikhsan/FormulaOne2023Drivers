@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".RegistActivity">
+
+    <TextView
+        android:id="@+id/regist_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/black"
+        android:paddingBottom="21dp"
+        android:text="@string/registration"
+        />
+
+    <TextView
+        android:id="@+id/regist_email_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/email"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:id="@+id/regist_email_input" />
+
+    <TextView
+        android:id="@+id/regist_password_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/password"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:id="@+id/regist_password_input" />
+
+    <TextView
+        android:id="@+id/regist_password_confirm_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ulangi_password"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:id="@+id/regist_password_confirm_input" />
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:id="@+id/regist_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/registration"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Or"
+        />
+
+    <Button
+        android:id="@+id/to_login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login"/>
+
+</LinearLayout>

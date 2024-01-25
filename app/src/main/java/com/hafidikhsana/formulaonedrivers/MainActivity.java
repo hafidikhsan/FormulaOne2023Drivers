@@ -3,10 +3,16 @@ package com.hafidikhsana.formulaonedrivers;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
@@ -16,6 +22,17 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser == null) {
+            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,15 +41,28 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
+        mAuth = FirebaseAuth.getInstance();
+
         RecyclerView list = findViewById(R.id.listview);
         LinearLayout errorView = findViewById(R.id.error_display);
         LinearLayout loadingView = findViewById(R.id.progress_circle);
         TextView errorMessage = findViewById(R.id.error_message);
+        FloatingActionButton logout = findViewById(R.id.logout_button);
+        RelativeLayout loaded = findViewById(R.id.drivers_loaded);
 
         APIClient apiClient = APIClient.getInstance();
         OpenF1API openF1Api = apiClient.getOpenF1Api();
 
         Call<List<Drivers>> call = openF1Api.getDrivers();
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                startActivity(getIntent());
+            }
+        });
 
         call.enqueue(new Callback<List<Drivers>>() {
             @Override
@@ -43,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
                     list.setAdapter(adapter);
                     loadingView.setVisibility(View.GONE);
                     list.setVisibility(View.VISIBLE);
+                    logout.setVisibility(View.VISIBLE);
+                    loaded.setVisibility(View.VISIBLE);
+
 
 //                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //                        @Override
