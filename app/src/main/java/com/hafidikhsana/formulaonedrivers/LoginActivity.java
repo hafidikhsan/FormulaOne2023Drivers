@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     Button loginButton;
     Button toRegistButton;
+    Button toML;
     EditText emailInputLogin;
     EditText passwordInputLogin;
     SignInButton buttonGoogleSignIn;
@@ -45,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton = findViewById(R.id.login_button);
         toRegistButton = findViewById(R.id.to_regist_button);
+        toML = findViewById(R.id.to_ml_button);
         emailInputLogin = findViewById(R.id.login_email_input);
         passwordInputLogin = findViewById(R.id.login_password_input);
         buttonGoogleSignIn = findViewById(R.id.google_sign_in_button);
@@ -95,6 +97,13 @@ public class LoginActivity extends AppCompatActivity {
         buttonGoogleSignIn.setOnClickListener((View.OnClickListener) view -> {
             Intent intent = googleSignInClient.getSignInIntent();
             launcher.launch(intent);
+        });
+
+        toML.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this,BarcodeActivity.class));
+            }
         });
 
         loginButton.setOnClickListener(new View.OnClickListener() {

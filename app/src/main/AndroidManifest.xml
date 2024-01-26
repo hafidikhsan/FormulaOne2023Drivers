@@ -17,11 +17,14 @@
         android:theme="@style/Theme.FormulaOneDrivers"
         tools:targetApi="31">
         <activity
+            android:name=".BarcodeActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegistActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".DriverDetail"
             android:exported="false"
