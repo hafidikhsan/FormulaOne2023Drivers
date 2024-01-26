@@ -21,7 +21,7 @@
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".DriverDetail"
             android:exported="false"
