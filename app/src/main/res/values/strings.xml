@@ -17,4 +17,7 @@
     <string name="registration">Registration</string>
     <string name="ulangi_password">Ulangi Password</string>
     <string name="logout">Logout</string>
+    <string name="capture">Capture</string>
+    <string name="analyze">Analyze</string>
+    <string name="barcode_result">Barcode Result</string>
 </resources>

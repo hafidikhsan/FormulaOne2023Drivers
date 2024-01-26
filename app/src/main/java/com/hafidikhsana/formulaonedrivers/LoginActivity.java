@@ -4,9 +4,13 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +32,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private static final String[] CAMERA_PERMISSION = new String[]{Manifest.permission.CAMERA};
+    private static final int CAMERA_REQUEST_CODE = 10;
 
     private FirebaseAuth mAuth;
     Button loginButton;
@@ -102,7 +109,11 @@ public class LoginActivity extends AppCompatActivity {
         toML.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this,BarcodeActivity.class));
+                if (hasCameraPermission()) {
+                    startActivity(new Intent(LoginActivity.this,BarcodeActivity.class));
+                } else {
+                    requestPermission();
+                }
             }
         });
 
@@ -133,5 +144,20 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this,RegistActivity.class));
             }
         });
+    }
+
+    private boolean hasCameraPermission() {
+        return ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestPermission() {
+        ActivityCompat.requestPermissions(
+                this,
+                CAMERA_PERMISSION,
+                CAMERA_REQUEST_CODE
+        );
     }
 }
