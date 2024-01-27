@@ -9,25 +9,50 @@
 
     <RelativeLayout
         android:layout_width="130dp"
-        android:layout_height="150dp"
+        android:layout_height="180dp"
         android:gravity="center"
-        android:layout_marginVertical="32dp" >
+        android:layout_marginVertical="32dp">
+
+        <RelativeLayout
+            android:layout_width="130dp"
+            android:layout_height="150dp"
+            android:gravity="center"
+            android:layout_marginVertical="32dp" >
+
+            <ImageView
+                android:id="@+id/driver_url"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/placeholder"
+                android:visibility="visible"/>
+
+            <ImageView
+                android:id="@+id/error_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/error_image"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
 
         <ImageView
-            android:id="@+id/driver_url"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/placeholder"
-            android:visibility="visible"/>
-
-        <ImageView
-            android:id="@+id/error_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/error_image"
+            android:id="@+id/is_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/favorite"
             android:visibility="gone"/>
 
+        <ImageView
+            android:id="@+id/is_favorite_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/add"
+            android:visibility="visible"/>
 
     </RelativeLayout>
 
@@ -43,6 +68,24 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/detail_driver_number_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Driver Number"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/driver_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="1"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="32sp" />
 
         <TextView
             android:text="Driver Name"
