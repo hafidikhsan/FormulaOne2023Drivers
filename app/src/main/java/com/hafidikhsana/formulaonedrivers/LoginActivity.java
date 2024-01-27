@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST_CODE = 10;
 
     private FirebaseAuth mAuth;
-    Button loginButton, toRegistButton, toML, toPickImageMLKit;
+    Button loginButton, toRegistButton, toML, toPickImageMLKit, crashButton;
     EditText emailInputLogin;
     EditText passwordInputLogin;
     SignInButton buttonGoogleSignIn;
@@ -55,7 +55,8 @@ public class LoginActivity extends AppCompatActivity {
         emailInputLogin = findViewById(R.id.login_email_input);
         passwordInputLogin = findViewById(R.id.login_password_input);
         buttonGoogleSignIn = findViewById(R.id.google_sign_in_button);
-        toPickImageMLKit =findViewById(R.id.to_pick_image_mlkit_button);
+        toPickImageMLKit = findViewById(R.id.to_pick_image_mlkit_button);
+        crashButton = findViewById(R.id.crash_button);
         mAuth = FirebaseAuth.getInstance();
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("872519150527-08qrm5flf9u8tnjh3ul8jkuabthecb1a.apps.googleusercontent.com")
@@ -103,6 +104,12 @@ public class LoginActivity extends AppCompatActivity {
         buttonGoogleSignIn.setOnClickListener((View.OnClickListener) view -> {
             Intent intent = googleSignInClient.getSignInIntent();
             launcher.launch(intent);
+        });
+
+        crashButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                throw new RuntimeException("Test Crash"); // Force a crash
+            }
         });
 
         toML.setOnClickListener(new View.OnClickListener() {

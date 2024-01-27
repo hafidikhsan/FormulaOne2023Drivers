@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
+import android.content.res.Resources
 import android.util.DisplayMetrics
 import android.util.Log
 import android.widget.Toast
@@ -97,7 +98,7 @@ class CameraHelper(
     }
 
     private fun aspectRatio(): Int {
-        with(DisplayMetrics().also { viewFinder.display.getRealMetrics(it) }) {
+        with(Resources.getSystem().displayMetrics) {
             val previewRatio = max(widthPixels, heightPixels).toDouble() / widthPixels.coerceAtMost(
                     heightPixels
             )
