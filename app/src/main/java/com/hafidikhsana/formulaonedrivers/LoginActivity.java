@@ -37,9 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST_CODE = 10;
 
     private FirebaseAuth mAuth;
-    Button loginButton;
-    Button toRegistButton;
-    Button toML;
+    Button loginButton, toRegistButton, toML, toPickImageMLKit;
     EditText emailInputLogin;
     EditText passwordInputLogin;
     SignInButton buttonGoogleSignIn;
@@ -57,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         emailInputLogin = findViewById(R.id.login_email_input);
         passwordInputLogin = findViewById(R.id.login_password_input);
         buttonGoogleSignIn = findViewById(R.id.google_sign_in_button);
+        toPickImageMLKit =findViewById(R.id.to_pick_image_mlkit_button);
         mAuth = FirebaseAuth.getInstance();
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("872519150527-08qrm5flf9u8tnjh3ul8jkuabthecb1a.apps.googleusercontent.com")
@@ -110,10 +109,17 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (hasCameraPermission()) {
-                    startActivity(new Intent(LoginActivity.this,BarcodeActivity.class));
+                    startActivity(new Intent(LoginActivity.this,KotlinRealtimeMLKitActivity.class));
                 } else {
                     requestPermission();
                 }
+            }
+        });
+
+        toPickImageMLKit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this,PickImageMLKitActivity.class));
             }
         });
 

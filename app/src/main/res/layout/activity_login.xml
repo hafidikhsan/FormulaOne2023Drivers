@@ -82,6 +82,13 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ML"/>
+        android:text="Real Time ML Kit"/>
+
+    <Button
+        android:id="@+id/to_pick_image_mlkit_button"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pick Image ML Kit"/>
 
 </LinearLayout>

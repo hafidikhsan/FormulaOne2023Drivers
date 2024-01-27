@@ -16,8 +16,6 @@ import androidx.camera.view.PreviewView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.media.Image;
@@ -44,7 +42,6 @@ import com.google.mlkit.vision.common.InputImage;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class BarcodeActivity extends AppCompatActivity {
 
@@ -55,7 +52,6 @@ public class BarcodeActivity extends AppCompatActivity {
 
     Button buttonTakePicture, buttonAnalyze;
     private TextView barcodeResultTextView;
-    int SELECT_PICTURE = 200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,14 +135,6 @@ public class BarcodeActivity extends AppCompatActivity {
         });
 
 //        cameraProviderFuture = ProcessCameraProvider.getInstance(this);
-//
-//        BarcodeScannerOptions options =
-//                new BarcodeScannerOptions.Builder()
-//                        .setBarcodeFormats(
-//                                Barcode.FORMAT_QR_CODE,
-//                                Barcode.FORMAT_AZTEC)
-//                        .enableAllPotentialBarcodes()
-//                        .build();
 //
 //        cameraProviderFuture.addListener(new Runnable() {
 //            @Override
