@@ -10,9 +10,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -29,12 +32,23 @@ public class DriverDetail extends AppCompatActivity {
     LinearLayout loaded;
     ProgressBar loading;
 
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String userEmail;
+
     FavoritesViewModel favoriteViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_detail);
+
+        if (user != null) {
+            userEmail = user.getEmail();
+        } else {
+            Toast.makeText(DriverDetail.this, "User not found",
+                    Toast.LENGTH_SHORT).show();
+        }
+
         Intent intent = getIntent();
         favoriteViewModel = new ViewModelProvider(this).get(FavoritesViewModel.class);
         driverName = findViewById(R.id.driver_name);
@@ -55,7 +69,7 @@ public class DriverDetail extends AppCompatActivity {
 
         APIClient apiClient = APIClient.getInstance();
         OpenF1API openF1Api = apiClient.getOpenF1Api();
-        boolean isFavorite = favoriteViewModel.isFavorite(Integer.parseInt(parameterNumber));
+        boolean isFavorite = favoriteViewModel.isFavorite(Integer.parseInt(parameterNumber), userEmail);
 
         if (isFavorite) {
             addImage.setVisibility(View.GONE);
@@ -98,7 +112,7 @@ public class DriverDetail extends AppCompatActivity {
                         loveImage.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                favoriteViewModel.delete(Integer.parseInt(parameterNumber));
+                                favoriteViewModel.delete(Integer.parseInt(parameterNumber), userEmail);
                                 addImage.setVisibility(View.VISIBLE);
                                 loveImage.setVisibility(View.GONE);
                             }
@@ -107,7 +121,7 @@ public class DriverDetail extends AppCompatActivity {
                         addImage.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                favoriteViewModel.insert(new Favorites(Integer.parseInt(parameterNumber), driver.getFullName(), driver.getTeamName(), driver.getNameAcronym()));
+                                favoriteViewModel.insert(new Favorites(Integer.parseInt(parameterNumber), driver.getFullName(), driver.getTeamName(), driver.getNameAcronym(), userEmail));
                                 addImage.setVisibility(View.GONE);
                                 loveImage.setVisibility(View.VISIBLE);
                             }

@@ -46,8 +46,6 @@ public class RegistActivity extends AppCompatActivity {
 
                 if (password.equals(repeatPassword)) {
 
-                    Log.d("FORM", email + " | " +password);
-
                     if (email.equals("") || password.equals("")) {
                         Toast.makeText(RegistActivity.this, "The form is empty",
                                 Toast.LENGTH_SHORT).show();

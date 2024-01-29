@@ -12,12 +12,12 @@ public interface FavoritesDao {
     @Insert
     long insert(Favorites favoriteItem);
 
-    @Query("SELECT * FROM favorites")
-    LiveData<List<Favorites>> getAll();
+    @Query("SELECT * FROM favorites WHERE email = :email")
+    LiveData<List<Favorites>> getAll(String email);
 
-    @Query("DELETE FROM favorites WHERE driver_number = :driverNumber")
-    void deleteById(int driverNumber);
+    @Query("DELETE FROM favorites WHERE driver_number = :driverNumber and email = :email")
+    void deleteById(int driverNumber, String email);
 
-    @Query("SELECT COUNT(*) FROM favorites WHERE driver_number = :driverNumber")
-    int isFavorite(int driverNumber);
+    @Query("SELECT COUNT(*) FROM favorites WHERE driver_number = :driverNumber and email = :email")
+    int isFavorite(int driverNumber, String email);
 }

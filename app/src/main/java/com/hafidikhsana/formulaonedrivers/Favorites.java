@@ -9,6 +9,9 @@ public class Favorites {
     @PrimaryKey(autoGenerate = true)
     public int id;
 
+    @ColumnInfo(name = "email")
+    public String email;
+
     @ColumnInfo(name = "driver_number")
     public int driverNumber;
 
@@ -21,10 +24,11 @@ public class Favorites {
     @ColumnInfo(name = "driver_acronym")
     public String driver_acronym;
 
-    public Favorites(int driverNumber, String driver_name, String driver_team, String driver_acronym) {
+    public Favorites(int driverNumber, String driver_name, String driver_team, String driver_acronym, String email) {
         this.driverNumber = driverNumber;
         this.driver_name = driver_name;
         this.driver_team = driver_team;
         this.driver_acronym = driver_acronym;
+        this.email = email;
     }
 }

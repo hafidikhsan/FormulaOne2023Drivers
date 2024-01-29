@@ -136,8 +136,6 @@ public class LoginActivity extends AppCompatActivity {
                 String email = emailInputLogin.getText().toString();
                 String password = passwordInputLogin.getText().toString();
 
-                Log.d("FORM", email + " | " +password);
-
                 if (email.equals("") || password.equals("")) {
 
                     Toast.makeText(LoginActivity.this, "The form is empty",

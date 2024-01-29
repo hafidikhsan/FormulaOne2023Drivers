@@ -11,28 +11,37 @@ import java.util.concurrent.Executors;
 
 public class FavoriteRepositories {
     private FavoritesDao favoriteItemDao;
-    private LiveData<List<Favorites>> allFavoriteItems;
 
     public FavoriteRepositories(Application application) {
         FavoriteItemDatabase database = FavoriteItemDatabase.getDatabase(application);
         favoriteItemDao = database.favoriteItemDao();
-        allFavoriteItems = favoriteItemDao.getAll();
     }
 
-    public LiveData<List<Favorites>> getAllFavoriteItems() {
-        return allFavoriteItems;
+    public LiveData<List<Favorites>> getAllFavoriteItems(String email) {
+        return favoriteItemDao.getAll(email);
     }
 
-    public boolean isFavorite(int itemId) {
-        return favoriteItemDao.isFavorite(itemId) > 0;
+    public boolean isFavorite(int itemId, String email) {
+        return favoriteItemDao.isFavorite(itemId, email) > 0;
     }
 
     public void insert(Favorites favoriteItem) {
         new insertAsyncTask(favoriteItemDao).execute(favoriteItem);
     }
 
-    public void delete(int itemId) {
-        new deleteAsyncTask(favoriteItemDao).execute(itemId);
+    private static class DeleteTask {
+        int item;
+        String email;
+
+        DeleteTask(int item, String email) {
+            this.item = item;
+            this.email = email;
+        }
+    }
+
+    public void delete(int itemId, String email) {
+        DeleteTask deleteModel = new DeleteTask(itemId, email);
+        new deleteAsyncTask(favoriteItemDao).execute(deleteModel);
     }
 
     private static class insertAsyncTask extends AsyncTask<Favorites, Void, Void> {
@@ -49,7 +58,7 @@ public class FavoriteRepositories {
         }
     }
 
-    private static class deleteAsyncTask extends AsyncTask<Integer, Void, Void> {
+    private static class deleteAsyncTask extends AsyncTask<DeleteTask, String, Void> {
         private FavoritesDao favoriteDao;
 
         deleteAsyncTask(FavoritesDao favoriteDao) {
@@ -57,8 +66,8 @@ public class FavoriteRepositories {
         }
 
         @Override
-        protected Void doInBackground(Integer... favorites) {
-            favoriteDao.deleteById(favorites[0]);
+        protected Void doInBackground(DeleteTask... deleteItem) {
+            favoriteDao.deleteById(deleteItem[0].item, deleteItem[0].email);
             return null;
         }
     }

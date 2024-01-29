@@ -10,27 +10,25 @@ import java.util.List;
 
 public class FavoritesViewModel extends AndroidViewModel {
     private FavoriteRepositories repository;
-    private LiveData<List<Favorites>> allFavorites;
 
     public FavoritesViewModel(@NonNull Application application) {
         super(application);
         repository = new FavoriteRepositories(application);
-        allFavorites = repository.getAllFavoriteItems();
     }
 
     public void insert(Favorites favorite) {
         repository.insert(favorite);
     }
 
-    public void delete(Integer item) {
-        repository.delete(item);
+    public void delete(Integer item, String email) {
+        repository.delete(item, email);
     }
 
-    public boolean isFavorite(Integer item) {
-        return repository.isFavorite(item);
+    public boolean isFavorite(Integer item, String email) {
+        return repository.isFavorite(item, email);
     }
 
-    public LiveData<List<Favorites>> getAllFavorites() {
-        return allFavorites;
+    public LiveData<List<Favorites>> getAllFavorites(String email) {
+        return repository.getAllFavoriteItems(email);
     }
 }
