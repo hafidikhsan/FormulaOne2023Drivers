@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,17 +45,25 @@ public class RegistActivity extends AppCompatActivity {
                 String repeatPassword = repeatPasswordInputRegist.getText().toString();
 
                 if (password.equals(repeatPassword)) {
-                    mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegistActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (task.isSuccessful()) {
-                                        startActivity(new Intent(RegistActivity.this,LoginActivity.class));
-                                    } else {
-                                        Toast.makeText(RegistActivity.this, "Authentication failed.",
-                                                Toast.LENGTH_SHORT).show();
-                                    }
+
+                    Log.d("FORM", email + " | " +password);
+
+                    if (email.equals("") || password.equals("")) {
+                        Toast.makeText(RegistActivity.this, "The form is empty",
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegistActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    startActivity(new Intent(RegistActivity.this,LoginActivity.class));
+                                } else {
+                                    Toast.makeText(RegistActivity.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
                                 }
-                            });
+                            }
+                        });
+                    }
                 } else {
                     Toast.makeText(RegistActivity.this, "Password tidak sesuai", Toast.LENGTH_LONG).show();
                 }
