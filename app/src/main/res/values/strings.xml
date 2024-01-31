@@ -21,4 +21,23 @@
     <string name="analyze">Analyze</string>
     <string name="barcode_result">Barcode Result</string>
     <string name="scan_barcode_now">Scan Barcode Now!</string>
+    <string name="password_hint">* * * * *</string>
+    <string name="login_password_form">Login password form</string>
+    <string name="halo_gmail_com">halo@gmail.com</string>
+    <string name="or">Or</string>
+    <string name="real_time_ml_kit">Real Time ML Kit</string>
+    <string name="pick_image_ml_kit">Pick Image ML Kit</string>
+    <string name="crash_button">Crash Button</string>
+    <string name="hi_welcome_to">Hi, ! Welcome to</string>
+    <string name="error_image">Error Image</string>
+    <string name="image_to_scan">Image to scan</string>
+    <string name="image_placeholder">Image Placeholder</string>
+    <string name="favorite">Favorite</string>
+    <string name="add_favorite">Add Favorite</string>
+    <string name="driver_number">Driver Number</string>
+    <string name="driver_name">Driver Name</string>
+    <string name="driver_display_name">Driver Display Name</string>
+    <string name="team_name">Team Name</string>
+    <string name="nationality">Nationality</string>
+    <string name="error_load_driver_detail">Error Load Driver Detail</string>
 </resources>

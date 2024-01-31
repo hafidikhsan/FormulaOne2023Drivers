@@ -30,7 +30,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
-        android:id="@+id/login_email_input" />
+        android:id="@+id/login_email_input"
+        android:minHeight="48dp"
+        android:hint="@string/halo_gmail_com"
+        android:autofillHints="emailAddress"/>
 
     <TextView
         android:id="@+id/login_password_title"
@@ -43,7 +46,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:id="@+id/login_password_input" />
+        android:hint="@string/password_hint"
+        android:id="@+id/login_password_input"
+        android:minHeight="48dp"
+        android:autofillHints="password" />
 
     <Button
         android:layout_marginTop="20dp"
@@ -56,7 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="Or"
+        android:text="@string/or"
         />
 
     <Button
@@ -69,7 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:text="Or"
+        android:text="@string/or"
         />
 
     <com.google.android.gms.common.SignInButton
@@ -82,20 +88,20 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Real Time ML Kit"/>
+        android:text="@string/real_time_ml_kit"/>
 
     <Button
         android:id="@+id/to_pick_image_mlkit_button"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pick Image ML Kit"/>
+        android:text="@string/pick_image_ml_kit"/>
 
     <Button
         android:id="@+id/crash_button"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Crash Button"/>
+        android:text="@string/crash_button"/>
 
 </LinearLayout>

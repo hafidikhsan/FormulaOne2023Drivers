@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,12 +29,16 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     GoogleSignInClient googleSignInClient;
 
+    String welcomeText;
+
     @Override
     protected void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
             startActivity(new Intent(MainActivity.this,LoginActivity.class));
+        } else {
+            welcomeText = "Hi, " + mAuth.getCurrentUser().getDisplayName() + "! Welcome to";
         }
     }
 
@@ -51,8 +56,11 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout errorView = findViewById(R.id.error_display);
         LinearLayout loadingView = findViewById(R.id.progress_circle);
         TextView errorMessage = findViewById(R.id.error_message);
+        TextView welcomeMessage = findViewById(R.id.welcome_text);
         FloatingActionButton logout = findViewById(R.id.logout_button);
         RelativeLayout loaded = findViewById(R.id.drivers_loaded);
+
+        welcomeMessage.setText(welcomeText);
 
         APIClient apiClient = APIClient.getInstance();
         OpenF1API openF1Api = apiClient.getOpenF1Api();

@@ -16,8 +16,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hi, Hafid! Welcome to"
+            android:text="@string/hi_welcome_to"
             android:textColor="@color/black"
+            android:id="@+id/welcome_text"
             android:textSize="24sp"/>
 
         <TextView
@@ -48,7 +49,8 @@
             android:layout_height="150dp"
             android:src="@drawable/error_image"
             android:layout_gravity="center"
-            android:visibility="visible"/>
+            android:visibility="visible"
+            android:contentDescription="@string/error_image" />
 
         <TextView
             android:id="@+id/error_text"
@@ -108,7 +110,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center_vertical|center_horizontal|center" />
-
 
     </LinearLayout>
 

@@ -1,5 +1,7 @@
 package com.hafidikhsana.formulaonedrivers;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Drivers {
@@ -40,6 +42,7 @@ public class Drivers {
     @SerializedName("meeting_key")
     private int meetingKey;
 
+    @NonNull
     @Override
     public String toString() {
         return "Drivers{" +

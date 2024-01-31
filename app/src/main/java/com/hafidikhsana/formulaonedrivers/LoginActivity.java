@@ -38,8 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     Button loginButton, toRegistButton, toML, toPickImageMLKit, crashButton;
-    EditText emailInputLogin;
-    EditText passwordInputLogin;
+    EditText emailInputLogin, passwordInputLogin;
     SignInButton buttonGoogleSignIn;
     GoogleSignInClient googleSignInClient;
     private ActivityResultLauncher<Intent> launcher;
@@ -108,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
 
         crashButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                throw new RuntimeException("Test Crash"); // Force a crash
+                throw new RuntimeException("Test Crash");
             }
         });
 
