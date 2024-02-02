@@ -40,4 +40,6 @@
     <string name="team_name">Team Name</string>
     <string name="nationality">Nationality</string>
     <string name="error_load_driver_detail">Error Load Driver Detail</string>
+    <string name="rooted">Rooted</string>
+    <string name="root_check">Root Check</string>
 </resources>
