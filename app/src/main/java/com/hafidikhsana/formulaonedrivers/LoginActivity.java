@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST_CODE = 10;
 
     private FirebaseAuth mAuth;
-    Button loginButton, toRegistButton, toML, toPickImageMLKit, crashButton, toRootCheck;
+    Button loginButton, toRegistButton, toML, toPickImageMLKit, crashButton, toRootCheck, isEmulator;
     EditText emailInputLogin, passwordInputLogin;
     SignInButton buttonGoogleSignIn;
     GoogleSignInClient googleSignInClient;
@@ -52,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         toRegistButton = findViewById(R.id.to_regist_button);
         toML = findViewById(R.id.to_ml_button);
         toRootCheck = findViewById(R.id.root_button);
+        isEmulator = findViewById(R.id.is_emulator_button);
         emailInputLogin = findViewById(R.id.login_email_input);
         passwordInputLogin = findViewById(R.id.login_password_input);
         buttonGoogleSignIn = findViewById(R.id.google_sign_in_button);
@@ -148,7 +149,7 @@ public class LoginActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         startActivity(new Intent(LoginActivity.this,MainActivity.class));
                                     } else {
-                                        Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                        Toast.makeText(LoginActivity.this, "Authentication failed." + task.getResult().toString(),
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -168,6 +169,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this,RootDetectionActivity.class));
+            }
+        });
+
+        isEmulator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this,IsEmulatorActivity.class));
             }
         });
     }

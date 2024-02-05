@@ -28,9 +28,13 @@
         android:theme="@style/Theme.FormulaOneDrivers"
         tools:targetApi="31">
         <activity
-            android:name=".RootDetectionActivity"
+            android:name=".IsEmulatorActivity"
             android:exported="false"
             android:parentActivityName=".LoginActivity"/>
+        <activity
+            android:name=".RootDetectionActivity"
+            android:exported="false"
+            android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".KotlinRealtimeMLKitActivity"
             android:exported="false"
