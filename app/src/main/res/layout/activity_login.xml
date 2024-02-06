@@ -110,10 +110,10 @@
 
         <Button
             android:id="@+id/root_button"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/root_check"/>
+            android:layout_marginTop="10dp"
+            android:text="@string/root_check" />
 
         <Button
             android:id="@+id/is_emulator_button"
@@ -121,6 +121,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/is_emulator"/>
+
+        <Button
+            android:id="@+id/security_check"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/security_check"/>
 
     </LinearLayout>
 

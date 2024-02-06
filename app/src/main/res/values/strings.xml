@@ -43,4 +43,9 @@
     <string name="rooted">Rooted</string>
     <string name="root_check">Root Check</string>
     <string name="is_emulator">Is Emulator</string>
+    <string name="is_active_accessible_service">Is Active Accessible Service ?</string>
+    <string name="is_use_emulator">Is use Emulator ?</string>
+    <string name="is_root">Is Root ?</string>
+    <string name="security_check">Security Check</string>
+    <string name="is_usb_debuging">Is USB debuging ?</string>
 </resources>
