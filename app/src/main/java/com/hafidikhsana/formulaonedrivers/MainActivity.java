@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         TextView errorMessage = findViewById(R.id.error_message);
         TextView welcomeMessage = findViewById(R.id.welcome_text);
         FloatingActionButton logout = findViewById(R.id.logout_button);
+        FloatingActionButton security = findViewById(R.id.check_security);
         RelativeLayout loaded = findViewById(R.id.drivers_loaded);
 
         welcomeMessage.setText(welcomeText);
@@ -84,6 +85,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        security.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,SecurityCheckActivity.class));
+            }
+        });
+
         call.enqueue(new Callback<List<Drivers>>() {
             @Override
             public void onResponse(Call<List<Drivers>> call, Response<List<Drivers>> response) {
@@ -95,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     list.setVisibility(View.VISIBLE);
                     logout.setVisibility(View.VISIBLE);
                     loaded.setVisibility(View.VISIBLE);
+                    security.setVisibility(View.VISIBLE);
 
                     adapter.setOnClickListener(new DriversAdapter.OnClickListener() {
                         @Override

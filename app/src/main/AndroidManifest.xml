@@ -30,7 +30,7 @@
         <activity
             android:name=".SecurityCheckActivity"
             android:exported="false"
-            android:parentActivityName=".LoginActivity"/>
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".IsEmulatorActivity"
             android:exported="false"
